@@ -30,4 +30,9 @@ Assets
       - selectivzr.js
     - custom.js
     - plugins.js
+
+<h3>A thanks to</h3>
+All the people that let me use their code to build this project.
+
+1. Shaune West for his baseline grid mixins <a href="https://github.com/theshaune/whiski" title="theshaune">https://github.com/theshaune/whiski</a>
     
