@@ -1,0 +1,127 @@
+// Baseline Grid
+//////////////////
+@function lines($line:1)
+  $lines: $line*$base-line-height*1px
+  @return $lines
+
+@function minimumlineheight($font-size)
+  $i: $base-line-height
+  $lines: 1
+  @while $i < $font-size
+    $i: $i + $base-line-height
+    $lines: $lines + 1
+  @return $lines
+
+@function lines($pixels:1)
+  $lines: $pixels*$base-line-height*1px
+  @return $lines
+
+@function em($px, $base: 12)
+  @return ($px / $base) * 1em
+
+=font-rhythm($font-size, $leading: false)
+  $lines: minimumlineheight($font-size)
+  font-size: em($font-size,$base-font-size)
+  line-height: ($base-line-height/$font-size)*$lines*1em
+  margin: ($base-line-height/$font-size)*1em 0
+  @if $leading
+    padding-top: ($base-line-height/$font-size)*$leading*1em
+    padding-bottom: ($base-line-height/$font-size)*(1-$leading)*1em
+
+=baseline
+  background-image: linear-gradient(#eee 1px, transparent 1px), linear-gradient(#f8f8f8 1px, transparent 1px)
+  background-size: 100% em($base-line-height), 50% em($base-line-height/2)
+
+//Columns
+///////////
+@function columns($col:1)
+  $columns: $col*($site_width/16 + $site_width/48)
+  @return $columns - $site_width/48
+
+=column_display
+  background-image: linear-gradient(90deg, #f8f8f8 75%, transparent 25%)
+  background-size: $site_width/12
+
+=main($sidebar_count: false)
+  margin: 0 columns(1)/3 0 0
+  float: left
+  width: columns(12)
+  @if $sidebar_count == 1
+    width: columns(8)
+  @else if $sidebar_count == 2
+    width: columns(6)
+  @media only screen and (max-width: $tablet)
+    width: 100%
+    float: none
+    margin: 0
+
+=sidebar($sidebar_count: false)
+  float: left
+  margin: 0 columns(1)/3 0 0
+  width: columns(12)
+  @if $sidebar_count == 1
+    width: columns(4)
+  @else if $sidebar_count == 2
+    width: columns(3)
+  @media only screen and (max-width: $tablet)
+    width: 100%
+    float: none
+    margin: 0
+
+//Misc
+////////
+=wrapper($wrapper_width: false)  
+  width: $site_width
+  margin: auto
+  position: relative
+  @if $wrapper_width
+    @media only screen and (max-width: $tablet)
+      width: $wrapper_width
+      margin: 0 5%
+
+=clearfix
+  &:after
+    clear: both
+    content: "."
+    display: block
+    height: 0
+    visibility: hidden
+
+=element-invisible 
+  border: 0
+  clip: rect(0 0 0 0)
+  height: 1px
+  margin: -1px
+  overflow: hidden
+  padding: 0
+  position: absolute !important
+  width: 1px
+
+=element-invisible-off
+  clip: auto
+  height: auto
+  margin: 0
+  overflow: visible
+  position: static !important
+  width: auto
+
+=element-invisible-focusable 
+  +element-invisible
+  &:active, &:focus
+    @include element-invisible-off
+
+=breakpoint($max, $min:'')
+  @if ($min!='')
+    @media only screen and (min-width: $min) and (max-width: $max) 
+      @content
+  @else
+    @media only screen and (max-width: $max)
+      @content
+
+=vendor-prefix($name, $argument)
+  #{$name}: $argument
+  -webkit-#{$name}: $argument
+  -ms-#{$name}: $argument
+  -moz-#{$name}: $argument
+  -o-#{$name}: $argument
+  
