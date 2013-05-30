@@ -2,9 +2,8 @@ Stripped
 ========
 Stripped is a Drupal theme where all the fluff of Drupal has been taken away. Assets are currently uploaded.
 
-File Structure
+<h3>File Structure</h3>
 
-Assets
   - css
     - compiled
       - ie6.css
