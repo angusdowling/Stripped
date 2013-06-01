@@ -6,6 +6,7 @@ Stripped
 <ul>
 <li><strong>Baseline Grid</strong>: a mixin that quickly calculates a baseline grid, useful for fast and easy vertical rhythm. Also includes font sizing mixin.</li>
 <li><strong>Columns</strong>: Allowing easy collaboration between designer and developer, this mixin makes it childs play to align elements to any amount of columns.</li>
+</ul>
 
 <h3>File Structure</h3>
 
