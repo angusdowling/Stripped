@@ -9,31 +9,39 @@ Stripped
 
 <h3>File Structure</h3>
 
-  - css
-    - compiled
-      - ie6.css
-      - ie7.css
-      - style.css
-    - modules
-    - sass
-      - _custom.sass
-      - _mixins.sass
-      - _reset.sass
-      - _vars.sass
-      - ie6.sass
-      - ie7.sass
-      - ie8.sass
-      - style.sass
-  - images
-    - spacer.gif
-  - js
-    - libs
-      - boxsizing.htc
-      - modernizr.custom.52714.js
-      - respond.min.js
-      - selectivzr.js
-    - custom.js
-    - plugins.js
+<ul>
+<li>css
+  <li>compiled
+    <li>ie6.css</li>
+    <li>ie7.css</li>
+    <li>style.css</li>
+  </li>  
+  <li>modules</li>
+  <li>sass
+    <li>_custom.sass</li>
+    <li>_mixins.sass</li>
+    <li>_reset.sass</li>
+    <li>_vars.sass</li>
+    <li>ie6.sass</li>
+    <li>ie7.sass</li>
+    <li>ie8.sass</li>
+    <li>style.sass</li>
+  </li>
+</li>
+<li>images
+  <li>spacer.gif</li>
+</li>
+<li>js
+  <li>libs
+    <li>boxsizing.htc</li>
+    <li>modernizr.custom.52714.js</li>
+    <li>respond.min.js</li>
+    <li>selectivzr.js</li>
+  </li>
+  <li>custom.js</li>
+  <li>plugins.js</li>
+</li>
+</ul>
 
 <h3>A thanks to</h3>
 All the people that let me use their code to build this project.
