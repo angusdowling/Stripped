@@ -1,6 +1,11 @@
 Stripped
 ========
+<h3>Introduction</h3>
 Stripped is a Drupal theme where all the fluff of Drupal has been taken away. Assets are currently uploaded.
+Stripped uses the powerful CSS preprocessor 'SASS' to do a lot of heavy lifting. There are several mixins that come with Stripped:
+
+Baseline Grid: a mixin that quickly calculates a baseline grid, useful for fast and easy vertical rhythm. Also includes font sizing mixin.
+Columns: Allowing easy collaboration between designer and developer, this mixin makes it childs play to align elements to any amount of columns.
 
 <h3>File Structure</h3>
 
