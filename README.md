@@ -17,7 +17,7 @@ Stripped
       <li>ie6.css</li>
       <li>ie7.css</li>
       <li>style.css</li>
-    <ul>
+    </ul>
     <li>modules</li>
     <li>sass</li>
     <ul>
