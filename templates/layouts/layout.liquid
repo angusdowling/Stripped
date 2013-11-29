@@ -1,23 +1,27 @@
 <!doctype html>
 <html lang="en">
     <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <!-- Title block allowing child pages to override -->
         <title>{% block title %}Empty{% endblock %}</title>
         <link rel="shortcut icon" type="image/ico" href="/favicon.ico" />
         <!-- Styles -->
-        {{ "app.css" | asset_url | stylesheet_tag }}
+        {% include "styles" %}
         <!-- Style block allowing child pages to inject their own styles -->
         {% block styles %}{% endblock %}
+        <script src="{{ "modernizr.js" | asset_url }}"></script>
     </head>
-    <body>
-        <div id="wrapper">
-            <!-- Include -->
-            {% include "header" %}
-            <!-- Content block, child page inject content -->
-            {% block content %}{% endblock %}
-        </div>
-        <!-- Script block allowing child pages to inject their own scripts -->
-        {% block scripts %}{% endblock %}
-        {{ "app.js" | asset_url | script_tag }}
+    <!--[if lt IE 7]>      <body class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+    <!--[if IE 7]>         <body class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
+    <!--[if IE 8]>         <body class="no-js lt-ie9" lang="en"> <![endif]-->
+    <!--[if gt IE 8]><!--> <body class="no-js" lang="en"> <!--<![endif]-->
+
+    <!-- Page divided into blocks for modularity. Change/delete/add as you like. -->
+        {% block header %}{% endblock %}
+        {% block content %}{% endblock %}
+        {% block footer %}{% endblock %}
+    <!-- Scripts -->
+        {% include "scripts" %}
     </body>
 </html>
