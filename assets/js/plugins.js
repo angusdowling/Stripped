@@ -1,121 +1,45 @@
+// Avoid `console` errors in browsers that lack a console.
+(function() {
+    var method;
+    var noop = function noop() {};
+    var methods = [
+        'assert', 'clear', 'count', 'debug', 'dir', 'dirxml', 'error',
+        'exception', 'group', 'groupCollapsed', 'groupEnd', 'info', 'log',
+        'markTimeline', 'profile', 'profileEnd', 'table', 'time', 'timeEnd',
+        'timeStamp', 'trace', 'warn'
+    ];
+    var length = methods.length;
+    var console = (window.console = window.console || {});
+ 
+    while (length--) {
+        method = methods[length];
+ 
+        // Only stub undefined methods.
+        if (!console[method]) {
+            console[method] = noop;
+        }
+    }
+}());
+
 /**
  * jQuery Mobile Select
  * @Author: Jochen Vandendriessche <jochen@builtbyrobot.com>
  * @Author URI: http://builtbyrobot.com
  *
+ * @TODO:
+ *			- create a before / after hook so we can fix some things euhm... before and
+ *				after I suppose
 **/
-(function($){
-	"use strict";
+(function(b){var c={init:function(a){a=b.extend({autoHide:!0,defaultOption:"Go to...",deviceWidth:480,appendTo:"",className:"mobileselect",useWindowWidth:!1},a);if((a.useWindowWidth===!0?b(window).width():screen.width)<a.deviceWidth){var d=b(this),c=a.appendTo.length?b(a.appendTo):d.parent(),e=b('<select class="'+a.className+'" />');e.appendTo(c);b("<option />",{selected:!b(".current",d).length?"selected":!1,value:"",text:a.defaultOption}).appendTo(e);b("a",d).each(function(){var a=b(this),c=a.parent("li").hasClass("current")||a.hasClass("current")?"selected":!1;b("<option />",{selected:c,value:a.attr("href"),text:a.text()}).appendTo(e)});a.autoHide&&b(d).hide();e.change(function(){window.location=b(this).find("option:selected").val()})}}};b.fn.mobileSelect=function(a){if(c[a])return c[a].apply(this,Array.prototype.slice.call(arguments,1));else if(typeof a==="object"||!a)return c.init.apply(this,arguments);else b.error("Method "+a+" does not exist on jQuery.mobileselect")}})(this.jQuery);
 
-	var methods = {
-		init : function(config) {
-			var options = $.extend({
-				autoHide: true,
-				defaultOption: "Go to...",
-				deviceWidth: 480,
-				appendTo: '',
-				className: 'mobileselect',
-				useWindowWidth: false
-			}, config);
-			// we'll use the width of the device, because we stopped browsersniffing
-			// a long time ago. Anyway, we want to target _every_ small display
-			var width = (options.useWindowWidth === true) ? $(window).width() : screen.width;
-			if (width < options.deviceWidth){
-				var _o = $(this), // store the jqyuery object once
-						_p = (options.appendTo.length) ? $(options.appendTo) : _o.parent(), // get the parent node
-						_s = $("<select class=\""+ options.className +"\" />"); // create a filthy select
-					_s.appendTo(_p); // append it to the parent
+/*
+ * http://github.com/amiel/html5support
+ * Amiel Martin
+ * 2010-01-26
+ *
+ * Support certain HTML 5 attributes with javascript, but only if the browser doesn't already support them.
+ */
 
-					$("<option />", {
-						 "selected": (!$('.active', _o).length) ? 'selected' : false,
-						 "value": "",
-						 "text": options.defaultOption
-					}).appendTo(_s);
-
-					// Populate the dropdown with menu items. If there is an li.active we'll
-					// make this one selected
-					$('a', _o).each(function() {
-						var el = $(this),
-						sl = ( el.parent('li').hasClass('active') || el.hasClass('active') ) ? 'selected' : false;
-						$("<option />", {
-							"selected": sl,
-							"value": el.attr("href"),
-							"text": el.text()
-						}).appendTo(_s);
-					});
-					// hide the navigation ul
-					if (options.autoHide){
-						$(_o).hide();
-					}
-					// now make it work :-)
-					_s.change(function() {
-						window.location = $(this).find("option:selected").val();
-					});
-			}
-		}
-	};
-
-	$.fn.mobileSelect = function(method){
-		if ( methods[method] ) {
-					return methods[ method ].apply( this, Array.prototype.slice.call( arguments, 1 ));
-				} else if ( typeof method === 'object' || ! method ) {
-					return methods.init.apply( this, arguments );
-				} else {
-					$.error( 'Method ' + method + ' does not exist on jQuery.mobileselect' );
-		}
-	};
-})(this.jQuery);
-
-/*global jQuery */
-/*!
-* Baseline.js 1.0
-*
-* Copyright 2012, Daniel Eden http://daneden.me
-* Released under the WTFPL license
-* http://sam.zoy.org/wtfpl/
-*
-* Date: Wed June 20 11:39:00 2012 GMT
-*/
-(function( $ ) {
-
-	$.fn.baseline = function(breakpoints) {
-
-		// Set up our variables, like a good little developer
-		var tall, newHeight, base, old = 0;
-
-		return this.each(function(){
-			var $this = $(this); // Set the images as objects
-
-			var setbase = function(breakpoints) { // The fun starts here
-			
-				// Check if a single value or multiple breakpoints are given                
-		                if (typeof breakpoints === 'number') {
-		                    base = breakpoints;
-		                } else if (typeof breakpoints === 'object') {
-		                    // Loop through the breakpoints and check which baseline to apply
-		                    for (key in breakpoints) {
-		                    	var current = parseInt(key);
-		                        if (document.width > current && current >= old) {
-		                            base = breakpoints[key];
-		                            old = current;
-		                        }
-		                    }
-		                }
-                
-				$this.css('maxHeight', 'none'); // Remove old max-height so that we can resize up as well as down
-				tall = $this.height(); // Grab the height
-				newHeight = Math.floor(tall / base) * base; // Make up a new height based on the baseline
-				$this.css('maxHeight', newHeight); // Set it!
-			}
-
-			setbase(breakpoints); // Call on load
-
-			$(window).resize(function(){ // And call again on resize.
-				setbase(breakpoints);
-			});
-
-		});
-
-	}
+var HTML5Support=function(a){function e(){var d=a(this),e=d.attr(b)+"   ",f=function(){if(a.trim(d.val())==""||d.val()==e)d.val(e).addClass(c)},g=function(){if(d.val()==e)d.val("").removeClass(c)};d.focus(g).blur(f).blur()}function f(){var d=a(this),e=d.attr(b),f=a('<input type="text">').val(e).addClass(c).addClass(d.attr("class")).css("display","none");set_value=function(){if(a.trim(d.val())==""){f.show();d.hide()}},clear_value=function(){f.hide();d.show().focus()};d.after(f);f.focus(clear_value);d.blur(set_value).blur()}var b="placeholder",c=b,d={};a.extend(d,{supports_attribute:function(a,b){return a in document.createElement(b||"input")}});a.fn.placeholder=function(b){if(d.supports_attribute("placeholder"))return this;return this.each(function(){a(this).attr("type")=="password"?f.apply(this):e.apply(this)})};a.fn.autofocus=function(){if(d.supports_attribute("autofocus"))return this;return this.focus()};a.autofocus=function(){a("[autofocus]:visible").autofocus()};a.placeholder=function(){a("["+b+"]").placeholder()};a.html5support=function(){a.autofocus();a.placeholder()};return d}(jQuery)
 
 }) ( jQuery );

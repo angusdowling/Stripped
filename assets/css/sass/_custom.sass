@@ -1,6 +1,9 @@
 body
-	+baseline
 	font-size: $base-font-size + px
+
+abbr, acronym, b, big, cite, code, del, dfn, em, i, ins, kbd, q,
+samp, small, strong, sub, sup, tt, var
+	line-height: 1
 
 h1, h2, h3, h4, h5, h6, p
 	color: $font-color
@@ -27,39 +30,3 @@ h6
 p
 	+font-rhythm(12)
 	color: lighten($font-color, 25%)
-
-#page
-	+clearfix
-	+wrapper(90%)
-	#main, #header, ul, ol
-		+clearfix
-
-#primary
-	li
-		display: inline-block
-
-#main
-	+column_display
-
-.region
-	border: 1px dotted #333
-
-.region-content-top
-	+main
-
-.region-content
-	+main(1)
-
-.region-sidebar-right, .region-sidebar-left
-	+sidebar(1)
-	
-
-@media only screen and (max-width: $laptop)
-
-@media only screen and (max-width: $tablet)
-
-	.mobileselect
-		width: 100%
-		margin: 1em 0
-
-@media only screen and (max-width: $mobile)

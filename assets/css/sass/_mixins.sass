@@ -28,6 +28,14 @@
     padding-top: ($base-line-height/$font-size)*$leading*1em
     padding-bottom: ($base-line-height/$font-size)*(1-$leading)*1em
 
+=overlay
+  +baseline
+  top: 0
+  left: 0
+  width: 100%
+  z-index: 999
+  position: absolute
+
 =baseline
   background-image: linear-gradient(#eee 1px, transparent 1px), linear-gradient(#f8f8f8 1px, transparent 1px)
   background-size: 100% em($base-line-height), 50% em($base-line-height/2)
