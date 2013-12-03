@@ -1,9 +1,16 @@
 {% comment %}Plugins, polyfills and libraries{% endcomment %}
-{{ "jquery.js" | asset_url | script_tag }}
+{{ "jquery.min.js" | asset_url | script_tag }}
 {{ "plugins.js" | asset_url | script_tag }}
 {{ "placeholders.jquery.min.js" | asset_url | script_tag }}
+{% comment %}
+
+Enable For HTML5 Video
 {{ "mediaelement-and-player.min.js" | asset_url | script_tag }}
+
+These require jQuery UI
 {{ "jquery.ui.selectmenu.min.js" | asset_url | script_tag }}
+
+{% endcomment %}
 
 {% comment %}Custom script{% endcomment %}
 {{ "custom.js" | asset_url | script_tag }}
