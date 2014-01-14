@@ -2,18 +2,10 @@
 {{ "normalize.css" | asset_url | stylesheet_tag }}
 
 {% comment %}Plugins, polyfills and libraries{% endcomment %}
-{% comment %}
-
-Enable for HTML5 Video
-{{ "mediaelementplayer.min.css" | asset_url | stylesheet_tag }}
-
-Enable for Font Awesome
+<!--Enable for Font Awesome-->
 <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" rel="stylesheet" type="text/css" media="all">
-
-Requires jQuery UI
-{{ "jquery.ui.selectmenu.min.css" | asset_url | stylesheet_tag }}
-
-{% endcomment %}
-
+<!--[if lt IE 7]>{{ "ie6.css" | asset_url | stylesheet_tag }}<![endif]-->
+<!--[if IE 7]>{{ "ie7.css" | asset_url | stylesheet_tag }}<![endif]-->
+<!--[if IE 8]>{{ "ie8.css" | asset_url | stylesheet_tag }}<![endif]-->
 {% comment %}Custom styles{% endcomment %}
 {{ "style.css" | asset_url | stylesheet_tag }}

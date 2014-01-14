@@ -21,6 +21,31 @@
     }
 }());
 
+//Debounced resize
+(function($,sr){
+  var debounce = function (func, threshold, execAsap) {
+      var timeout;
+
+      return function debounced () {
+          var obj = this, args = arguments;
+          function delayed () {
+              if (!execAsap)
+                  func.apply(obj, args);
+              timeout = null;
+          };
+
+          if (timeout)
+              clearTimeout(timeout);
+          else if (execAsap)
+              func.apply(obj, args);
+
+          timeout = setTimeout(delayed, threshold || 100);
+      };
+  }
+  jQuery.fn[sr] = function(fn){  return fn ? this.bind('resize', debounce(fn)) : this.trigger(sr); };
+
+})(jQuery,'smartresize');
+
 /**
  * jQuery Mobile Select
  * @Author: Jochen Vandendriessche <jochen@builtbyrobot.com>
@@ -41,3 +66,90 @@
  */
 
 var HTML5Support=function(a){function e(){var d=a(this),e=d.attr(b)+"   ",f=function(){if(a.trim(d.val())==""||d.val()==e)d.val(e).addClass(c)},g=function(){if(d.val()==e)d.val("").removeClass(c)};d.focus(g).blur(f).blur()}function f(){var d=a(this),e=d.attr(b),f=a('<input type="text">').val(e).addClass(c).addClass(d.attr("class")).css("display","none");set_value=function(){if(a.trim(d.val())==""){f.show();d.hide()}},clear_value=function(){f.hide();d.show().focus()};d.after(f);f.focus(clear_value);d.blur(set_value).blur()}var b="placeholder",c=b,d={};a.extend(d,{supports_attribute:function(a,b){return a in document.createElement(b||"input")}});a.fn.placeholder=function(b){if(d.supports_attribute("placeholder"))return this;return this.each(function(){a(this).attr("type")=="password"?f.apply(this):e.apply(this)})};a.fn.autofocus=function(){if(d.supports_attribute("autofocus"))return this;return this.focus()};a.autofocus=function(){a("[autofocus]:visible").autofocus()};a.placeholder=function(){a("["+b+"]").placeholder()};a.html5support=function(){a.autofocus();a.placeholder()};return d}(jQuery)
+
+//Test for ie
+var ie = (function(){
+
+    var undef,
+        v = 3,
+        div = document.createElement('div'),
+        all = div.getElementsByTagName('i');
+
+    while (
+        div.innerHTML = '<!--[if gt IE ' + (++v) + ']><i></i><![endif]-->',
+        all[0]
+    );
+
+    return v > 4 ? v : undef;
+
+}());
+
+// Build the functionality for custom <select> tags so we can have custom styles.
+(function ( $ ) {
+    $.fn.cstmSlct = function() {
+
+        var settings = $.extend({
+            // These are the defaults.
+            container: null
+        }, options );
+
+        //Wrap the <select> in the necessary divs
+        $(this)
+            .wrap('<div class="ui-select"></div>')
+            .wrap('<div class="ui-btn"></div>')
+            .before('<span class="ui-btn-text"></span>')
+            .after('<small class="ui-btn-arrow"></small>');
+        $(this).each(function(){
+        // If the selects been hidden, hide the appropriate parent div.
+            if($(this).css('display') === 'none'){
+                $(this).closest('.ui-select').css('display', 'none')
+            } else {
+        // If it's not hidden, proceed with taking the selected option value and printing it in our span.
+                txt = $(this).find('option:selected').text()
+                $(this).prev('.ui-btn-text').html(txt)
+            }
+        })
+
+        //If it's inside a container
+        if ($(this).closest(container).length > 0){
+            //find out how many selects are inside the container and give the appropriate class for floating.
+            $(container).each(function(){
+                var grpnmbr,
+                    select = $(this).find('select'),
+                    nmbr = select.length;
+
+                select.closest('.ui-btn').addClass("grp_"+nmbr)
+            })
+        }
+
+        //When you select an option, update the span.
+        $( "select" ).change(function () {
+            var str = "";
+            $(this).find( "option:selected" ).each(function() {
+                str += $( this ).text() + " ";
+            });
+            $(this).prev('.ui-btn-text').text( str );
+        })
+    });
+    
+}( jQuery ));
+
+// Form checkbox functionality
+(function ( $ ) {
+    $.fn.cstmChkbx = function() {
+        if($(this).length > 0){
+
+            var settings = $.extend({
+                // These are the defaults.
+                label: $("label[for='"$(this).attr('name')"']")
+            }, options );
+
+            label.on('click', $(this) ,function() {
+                radioButton = $(this).siblings('input');
+                $(this).toggleClass('radio-checked');
+                radioButton.prop("checked", !radioButton.prop("checked"));
+            });
+
+        }
+    });
+}( jQuery ));
