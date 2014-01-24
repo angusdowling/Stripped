@@ -1,1 +1,9 @@
-.lt-ie7 div.admin .left,.lt-ie7 div.admin .right{width:46%}.lt-ie7 ul.primary,.lt-ie7 ul.secondary{width:100%;width:auto}.lt-ie7 ul.primary li a,.lt-ie7 ul.primary li a .tab,.lt-ie7 ul.secondary li a,.lt-ie7 ul.secondary li a .tab{display:inline;display:inline-block}
+.lt-ie7 div.admin .left, .lt-ie7 div.admin .right {
+  width: 46%; }
+
+.lt-ie7 ul.primary, .lt-ie7 ul.secondary {
+  width: 100%;
+  width: auto; }
+  .lt-ie7 ul.primary li a, .lt-ie7 ul.primary li a .tab, .lt-ie7 ul.secondary li a, .lt-ie7 ul.secondary li a .tab {
+    display: inline;
+    display: inline-block; }

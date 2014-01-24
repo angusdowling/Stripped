@@ -6,6 +6,7 @@
 	margin-top: .5em
 	margin-bottom: .5em
 	position: relative
+	display: inline-block
 	
 .ui-select > select 
 	position: absolute !important
@@ -54,11 +55,9 @@
 	text-indent: 1em
 	box-shadow: inset 1px 2px 3px #eee
 	border: 1px solid #E6E6E6
-	display: block
 	position: relative
 	text-overflow: ellipsis
 	overflow: hidden
-	white-space: nowrap
 	cursor: pointer
 	-webkit-user-select: none
 	-moz-user-select: none
@@ -66,10 +65,10 @@
 	user-select: none
 	background: #fff
 	height: 2.5em
+	padding-right: 38px
 
 //Arrow styling
 .ui-btn-arrow
-	background-image: url(../../img/graphics/select-arrow.png)
 	background-repeat: no-repeat
 	background-position: 0 0
 	background-color: transparent
@@ -82,10 +81,7 @@
 	right: 0
 
 .ui-btn:hover .ui-btn-arrow
-	background-image: url(../../img/graphics/select-arrow.png)
-	background-repeat: no-repeat
 	background-position: 0 -38px
-	background-color: transparent
 
 .b_form__select__container
 	+clearfix
@@ -95,3 +91,25 @@
 	width: 12em
 	float: left
 	margin-right: 1em
+
+/***********/
+/* SELECTS */
+/***********/
+
+.cstmChkbx_label
+	height: 1.2857em
+	white-space: nowrap
+	+font-rhythm(14)
+	line-height: 1.29em
+	cursor: pointer
+	padding: 2px 3.5em 0 0
+	margin: 0.5em 4em 0 0
+	background: url(../../img/graphics/checkbox.png) right 0px no-repeat
+	&:hover
+		background-position: right -20px
+.cstmChkbx_label.checked
+	background-position: right -40px
+.cstmChkbx_label.checked:hover
+	background-position: right -40px
+.cstmChkbx
+	+element-invisible
