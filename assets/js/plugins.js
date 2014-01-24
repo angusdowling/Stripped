@@ -32,7 +32,7 @@
               if (!execAsap)
                   func.apply(obj, args);
               timeout = null;
-          }
+          };
 
           if (timeout)
               clearTimeout(timeout);
@@ -41,7 +41,7 @@
 
           timeout = setTimeout(delayed, threshold || 100);
       };
-  };
+  }
   jQuery.fn[sr] = function(fn){  return fn ? this.bind('resize', debounce(fn)) : this.trigger(sr); };
 
 })(jQuery,'smartresize');
@@ -86,12 +86,11 @@ var ie = (function(){
 
 // Build the functionality for custom <select> tags so we can have custom styles.
 (function ( $ ) {
-    $.fn.cstmSlct = function(options) {
+    $.fn.cstmSlct = function() {
 
         var settings = $.extend({
             // These are the defaults.
-            background: '',
-            container: ''
+            container: null
         }, options );
 
         //Wrap the <select> in the necessary divs
@@ -99,28 +98,28 @@ var ie = (function(){
             .wrap('<div class="ui-select"></div>')
             .wrap('<div class="ui-btn"></div>')
             .before('<span class="ui-btn-text"></span>')
-            .after('<small class="ui-btn-arrow" style="background-image:'+settings.background+'"></small>');
+            .after('<small class="ui-btn-arrow"></small>');
         $(this).each(function(){
         // If the selects been hidden, hide the appropriate parent div.
             if($(this).css('display') === 'none'){
-                $(this).closest('.ui-select').css('display', 'none');
+                $(this).closest('.ui-select').css('display', 'none')
             } else {
         // If it's not hidden, proceed with taking the selected option value and printing it in our span.
-                txt = $(this).find('option:selected').text();
-                $(this).prev('.ui-btn-text').html(txt);
+                txt = $(this).find('option:selected').text()
+                $(this).prev('.ui-btn-text').html(txt)
             }
-        });
+        })
 
         //If it's inside a container
-        if ($(this).closest(settings.container).length > 0){
+        if ($(this).closest(container).length > 0){
             //find out how many selects are inside the container and give the appropriate class for floating.
-            $(settings.container).each(function(){
+            $(container).each(function(){
                 var grpnmbr,
                     select = $(this).find('select'),
                     nmbr = select.length;
 
-                select.closest('.ui-btn').addClass("grp_"+nmbr);
-            });
+                select.closest('.ui-btn').addClass("grp_"+nmbr)
+            })
         }
 
         //When you select an option, update the span.
@@ -130,27 +129,24 @@ var ie = (function(){
                 str += $( this ).text() + " ";
             });
             $(this).prev('.ui-btn-text').text( str );
-        });
+        })
     };
     
 }( jQuery ));
 
 // Form checkbox functionality
 (function ( $ ) {
-    $.fn.cstmChkbx = function(options) {
+    $.fn.cstmChkbx = function() {
         if($(this).length > 0){
 
             var settings = $.extend({
                 // These are the defaults.
-                label: $(this).prev('label')
+                label: $("label[for='"+$(this).attr('name')+"']")
             }, options );
 
-            $(this).addClass('cstmChkbx');
-            settings.label.addClass('cstmChkbx_label');
-
-            settings.label.on('click', $('.cstmChkbx'), function() {
+            label.on('click', $(this) ,function() {
                 radioButton = $(this).siblings('input');
-                $(this).toggleClass('checked');
+                $(this).toggleClass('radio-checked');
                 radioButton.prop("checked", !radioButton.prop("checked"));
             });
 
