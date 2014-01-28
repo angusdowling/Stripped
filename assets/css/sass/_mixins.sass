@@ -1,5 +1,4 @@
-// Baseline Grid
-//////////////////
+/* BASELINE GRID */
 @function lines($line:1)
   $lines: $line*$base-line-height*1px
   @return $lines
@@ -19,11 +18,15 @@
 @function em($px, $base: 12)
   @return ($px / $base) * 1em
 
-=font-rhythm($font-size, $leading: false)
+=font-rhythm($font-size, $lineheight: false, $margin: false, $leading: false)
   $lines: minimumlineheight($font-size)
   font-size: em($font-size,$base-font-size)
-  line-height: ($base-line-height/$font-size)*$lines*1em
-  margin: ($base-line-height/$font-size)*1em 0
+  @if $lineheight
+    line-height: em($lineheight)
+  @else
+    line-height: ($base-line-height/$font-size)*$lines*1em
+  @if $margin
+    margin: ($base-line-height/$font-size)*1em 0
   @if $leading
     padding-top: ($base-line-height/$font-size)*$leading*1em
     padding-bottom: ($base-line-height/$font-size)*(1-$leading)*1em
@@ -40,11 +43,10 @@
   background-image: linear-gradient(#eee 1px, transparent 1px), linear-gradient(#f8f8f8 1px, transparent 1px)
   background-size: 100% em($base-line-height), 50% em($base-line-height/2)
 
-//Columns
-///////////
+/* COLUMNS */
 @function columns($col:1)
-  $columns: $col*($site_width/16 + $site_width/48)
-  @return $columns - $site_width/48
+  $columns: $col*(($site_width/12)/(3/2) + ($site_width/12)/(8/3))
+  @return $columns - ($site_width/12)/(8/3)
 
 =column_display
   background-image: linear-gradient(90deg, #f8f8f8 75%, transparent 25%)
@@ -76,8 +78,7 @@
     float: none
     margin: 0
 
-//Misc
-////////
+/* MISC */
 =wrapper($wrapper_width: false)  
   width: $site_width
   margin: auto
@@ -132,4 +133,5 @@
   -ms-#{$name}: $argument
   -moz-#{$name}: $argument
   -o-#{$name}: $argument
+  
   

@@ -1,7 +1,4 @@
-/***********/
 /* SELECTS */
-/***********/
-
 .ui-select 
 	margin-top: .5em
 	margin-bottom: .5em
@@ -15,11 +12,11 @@
 	overflow: hidden
 	clip: rect(1px,1px,1px,1px)
 
-.ui-btn 
+.ui-select-btn 
 	margin: 0
 	opacity: 1 /* Fixes When Windows Phone 7.5 (Mango) tries to calculate a numeric opacity for a select (including "inherit") without explicitly specifying an opacity on the parent to give it context, a bug appears where clicking elsewhere on the page after opening the select will open the select again. */
 
-.ui-btn select 
+.ui-select-btn select 
 	position: absolute
 	top: 0
 	left: 0
@@ -39,18 +36,16 @@
 	z-index: 2
 
 @-moz-document url-prefix() 
-	.ui-select .ui-btn select 
+	.ui-select-btn select 
 		opacity: 0.0001
 
-
-.ui-btn > span
+.ui-select-btn > span
 	display: block
 	text-overflow: ellipsis
 	overflow: hidden !important
 	white-space: nowrap
 
-//Button styling
-.ui-btn
+.ui-select-btn
 	line-height: 2.5em
 	text-indent: 1em
 	box-shadow: inset 1px 2px 3px #eee
@@ -67,8 +62,7 @@
 	height: 2.5em
 	padding-right: 38px
 
-//Arrow styling
-.ui-btn-arrow
+.ui-select-btn-arrow
 	background-repeat: no-repeat
 	background-position: 0 0
 	background-color: transparent
@@ -80,24 +74,20 @@
 	top: 0
 	right: 0
 
-.ui-btn:hover .ui-btn-arrow
+.ui-select-btn:hover .ui-select-btn-arrow
 	background-position: 0 -38px
 
-.b_form__select__container
-	+clearfix
-	margin: 0 0 3em
-
-.grp_3
+.group-of-3
 	width: 12em
 	float: left
 	margin-right: 1em
 
-/***********/
-/* SELECTS */
-/***********/
+/* CHECKBOXES */
+.ui-checkbox
+	+element-invisible
 
-.cstmChkbx_label
-	height: 1.2857em
+.ui-checkbox-label
+	height: 21px
 	white-space: nowrap
 	+font-rhythm(14)
 	line-height: 1.29em
@@ -105,11 +95,94 @@
 	padding: 2px 3.5em 0 0
 	margin: 0.5em 4em 0 0
 	background: url(../../img/graphics/checkbox.png) right 0px no-repeat
+
 	&:hover
-		background-position: right -20px
-.cstmChkbx_label.checked
-	background-position: right -40px
-.cstmChkbx_label.checked:hover
-	background-position: right -40px
-.cstmChkbx
-	+element-invisible
+		background-position: right -23px
+
+.ui-checkbox-label.is-checked
+	background-position: right -46px
+
+.ui-checkbox-label.is-checked:hover
+	background-position: right -46px
+
+/* RULE */
+.ui-rule
+	border-bottom: 1px solid #c2c0b4
+
+/* BUTTONS */
+.ui-btn
+	display: inline-block
+	+font-rhythm(14, 20) 
+	color: white
+	padding: 10px 15px
+	background: $secondary
+	margin: 15px 0
+	&:hover
+		text-decoration: underline
+
+/* FORM LABEL */
+.ui-label
+	display: inline-block
+	*display: inline
+	zoom: 1
+	+font-rhythm(14, 20)
+
+/* FORM FIELD */
+.ui-field
+	+font-rhythm(14, 20)
+	color: #686666
+	border: 1px solid #c9c3c3
+	padding: 10px 15px
+	+vendor-prefix(box-shadow, inset 1px 2px 4px #ddd)
+
+/* FORM SEARCH */
+.ui-search
+	background: white
+	color: black
+	border: 1px solid $tertiary
+	padding: 10px 10px
+	width: 220px
+	+vendor-prefix(box-shadow, inset 0px 1px 2px #A7A7A7)
+
+/* SUBMIT */
+.ui-submit
+	background: $primary
+	border: 0
+	color: white
+	padding: 10px 15px
+
+/* UTILITY LINK */
+.ui-utility-link
+	background: url(../../img/graphics/chevron-reverse.png) left 5px no-repeat
+	padding: 0 0 0 15px
+
+/* TABS */
+.ui-tabs
+	background: white
+	border: 1px solid #ccc
+	.ui-tabs-panel.ui-widget-content
+		padding: 20px
+.ui-tabs-nav
+	padding: 0
+	margin: 0
+	+clearfix
+	li
+		list-style-type: none
+		display: block
+		float: left
+		width: 25%
+		a
+			display: block
+			+font-rhythm(14, 20) 
+			color: white
+			width: 100%
+			text-align: center
+			padding: 10px 0
+			&:hover
+				text-decoration: underline
+		&.ui-state-default
+			background: $primary
+		&.ui-tabs-active.ui-state-active
+			background: white
+			a
+				color: $primary

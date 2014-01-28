@@ -5,28 +5,29 @@ abbr, acronym, b, big, cite, code, del, dfn, em, i, ins, kbd, q,
 samp, small, strong, sub, sup, tt, var
 	line-height: 1
 
-h1, h2, h3, h4, h5, h6, p
+h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6, p, .p
 	color: $font-color
-h1, h2, h3, h4, h5, h6
-	font-family: $font-h
-	font-weight: 600
-p
-	font-family: $font-p
-a
-	color: inherit
-	text-decoration: none
-h1
-	+font-rhythm(36)
-h2
-	+font-rhythm(27)
-h3
-	+font-rhythm(21, 1)
-h4	
-	+font-rhythm(18, 1)
-h5
-	+font-rhythm(15.75, 1)
-h6
-	+font-rhythm(13.5, 1)
-p
-	+font-rhythm(12)
+	font-family: $font-primary
+	font-weight: 100
+	margin: 0 0 1em 0
+h1, .h1
+	+font-rhythm(35)
+	font-family: $font-secondary
+h2, .h2
+	+font-rhythm(24)
+h3, .h3
+	+font-rhythm(20)
+h4, .h4
+	+font-rhythm(16)
+	font-weight: bold
+h5, h6, .h5, .h6
+	+font-rhythm(14)
+	font-weight: bold
+p, .p
+	+font-rhythm(14)
 	color: lighten($font-color, 25%)
+a
+	color: $link-color
+	text-decoration: none
+	&:hover
+		text-decoration: underline

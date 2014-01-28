@@ -5,7 +5,7 @@
 <!--[if gt IE 8]><!--><html class="no-js" lang="en"><!--<![endif]-->
     <head>
         <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="viewport" content="width=device-width; initial-scale=0.9; maximum-scale=0.9; minimum-scale=0.9;">
         <!-- Title block allowing child pages to override -->
         <title>{% block title %}Title{% endblock %}</title>
         <!-- Styles -->
@@ -16,11 +16,10 @@
         <script src="{{ "modernizr.min.js" | asset_url }}"></script>
     </head>
     <body>
-
     <!-- Page divided into blocks for modularity. Change/delete/add as you like. -->
-        {% block header %}{% endblock %}
+        {% include "header" %}
         {% block content %}{% endblock %}
-        {% block footer %}{% endblock %}
+        {% include "footer" %}
     <!-- Scripts -->
         {% include "scripts" %}
     </body>

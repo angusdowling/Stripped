@@ -86,7 +86,7 @@ var ie = (function(){
 
 // Build the functionality for custom <select> tags so we can have custom styles.
 (function ( $ ) {
-    $.fn.cstmSlct = function() {
+    $.fn.cstmSlct = function(options) {
 
         var settings = $.extend({
             // These are the defaults.
@@ -96,9 +96,9 @@ var ie = (function(){
         //Wrap the <select> in the necessary divs
         $(this)
             .wrap('<div class="ui-select"></div>')
-            .wrap('<div class="ui-btn"></div>')
-            .before('<span class="ui-btn-text"></span>')
-            .after('<small class="ui-btn-arrow"></small>');
+            .wrap('<div class="ui-select-btn"></div>')
+            .before('<span class="ui-select-btn-text"></span>')
+            .after('<small class="ui-select-btn-arrow"></small>');
         $(this).each(function(){
         // If the selects been hidden, hide the appropriate parent div.
             if($(this).css('display') === 'none'){
@@ -106,19 +106,19 @@ var ie = (function(){
             } else {
         // If it's not hidden, proceed with taking the selected option value and printing it in our span.
                 txt = $(this).find('option:selected').text()
-                $(this).prev('.ui-btn-text').html(txt)
+                $(this).prev('.ui-select-btn-text').html(txt)
             }
         })
 
         //If it's inside a container
-        if ($(this).closest(container).length > 0){
+        if ($(this).closest(settings.container).length > 0){
             //find out how many selects are inside the container and give the appropriate class for floating.
-            $(container).each(function(){
+            $(settings.container).each(function(){
                 var grpnmbr,
                     select = $(this).find('select'),
                     nmbr = select.length;
 
-                select.closest('.ui-btn').addClass("grp_"+nmbr)
+                select.closest('.ui-select-btn').addClass("group-of-"+nmbr)
             })
         }
 
@@ -128,7 +128,7 @@ var ie = (function(){
             $(this).find( "option:selected" ).each(function() {
                 str += $( this ).text() + " ";
             });
-            $(this).prev('.ui-btn-text').text( str );
+            $(this).prev('.ui-select-btn-text').text( str );
         })
     };
     
@@ -136,7 +136,7 @@ var ie = (function(){
 
 // Form checkbox functionality
 (function ( $ ) {
-    $.fn.cstmChkbx = function() {
+    $.fn.cstmChkbx = function(options) {
         if($(this).length > 0){
 
             var settings = $.extend({
@@ -144,7 +144,7 @@ var ie = (function(){
                 label: $("label[for='"+$(this).attr('name')+"']")
             }, options );
 
-            label.on('click', $(this) ,function() {
+            settings.label.on('click', $(this) ,function() {
                 radioButton = $(this).siblings('input');
                 $(this).toggleClass('radio-checked');
                 radioButton.prop("checked", !radioButton.prop("checked"));
